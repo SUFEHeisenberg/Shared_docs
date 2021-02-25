@@ -1,0 +1,99 @@
+Sender: LSF System <lsfadmin@gpu10>
+Subject: Job 39457: <LOTClass_ag> in cluster <cluster_lsf> Exited
+
+Job <LOTClass_ag> was submitted from host <mgtgpu02> by user <wangziyuan> in cluster <cluster_lsf> at Wed Feb 24 22:06:24 2021
+Job was executed on host(s) <2*gpu10>, in queue <gpu>, as user <wangziyuan> in cluster <cluster_lsf> at Wed Feb 24 22:06:25 2021
+</nfsshare/home/wangziyuan> was used as the home directory.
+</nfsshare/home/wangziyuan/NLP/LOTClass> was used as the working directory.
+Started at Wed Feb 24 22:06:25 2021
+Terminated at Wed Feb 24 22:18:37 2021
+Results reported at Wed Feb 24 22:18:37 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB –gpu "num=2:mode=exclusive_process"
+#BSUB -n 2
+#BSUB -q gpu
+#BSUB -o LOTClass_ag.out
+#BSUB -e LOTClass_ag.err
+#BSUB -J LOTClass_ag
+#BSUB -R "rusage[ngpus_physical=2]"
+
+export CUDA_DEVICE_ORDER=PCI_BUS_ID
+export CUDA_VISIBLE_DEVICES=0,1
+
+python src/train.py --dataset_dir datasets/agnews/agnews_data/ \
+--label_names_file label_names.txt \
+--train_file train.txt \
+--test_file test.txt \
+--test_label_file test_labels.txt \
+--max_len 200 \
+--train_batch_size 4 \
+--accum_steps 16 \
+--eval_batch_size 32 \
+--gpus 2 \
+--mcp_epochs 3 \
+--self_train_epochs 1 \
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   1422.00 sec.
+    Max Memory :                                 10209 MB
+    Average Memory :                             6391.19 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              14
+    Max Threads :                                196
+    Run time :                                   731 sec.
+    Turnaround time :                            733 sec.
+
+The output (if any) follows:
+
+Namespace(accum_steps=16, category_vocab_size=100, dataset_dir='datasets/agnews/agnews_data/', dist_port=12345, early_stop=False, eval_batch_size=32, final_model='final_model.pt', gpus=2, label_names_file='label_names.txt', match_threshold=20, max_len=200, mcp_epochs=3, out_file='out.txt', self_train_epochs=1.0, test_file='test.txt', test_label_file='test_labels.txt', top_pred_num=50, train_batch_size=4, train_file='train.txt', update_interval=50)
+Effective training batch size: 128
+Label names used for each class are: {0: ['politics'], 1: ['sports'], 2: ['business'], 3: ['technology']}
+Reading texts from datasets/agnews/agnews_data/train.txt
+Converting texts into tensors.
+Saving encoded texts into datasets/agnews/agnews_data/train.pt
+Reading texts from datasets/agnews/agnews_data/train.txt
+Locating label names in the corpus.
+Saving texts with label names into datasets/agnews/agnews_data/label_name_data.pt
+Reading texts from datasets/agnews/agnews_data/test.txt
+Converting texts into tensors.
+Saving encoded texts into datasets/agnews/agnews_data/test.pt
+Reading labels from datasets/agnews/agnews_data/test_labels.txt
+Contructing category vocabulary.
+Class 0 category vocabulary: ['politics', 'political', 'politicians', 'Politics', 'government', 'elections', 'issues', 'history', 'democracy', 'affairs', 'policy', 'politically', 'politician', 'society', 'policies', 'voters', 'people', 'debate', 'election', 'culture', 'economics', 'forces', 'relations', 'governance', 'parliament', 'leadership', 'campaign', 'problems', 'opposition', 'military', 'movements', 'diplomacy', 'war', 'polls', 'congress', 'campaigning', 'nature', 'dynamics', 'debates', 'taxes', 'struggles', 'control', 'campaigns', 'economy', 'officials', 'ideology', 'leaders', 'religion', 'geography', 'state', 'Congress', 'wars', 'corruption', 'roads', 'territory', 'voting', 'climate', 'agriculture', 'balance']
+
+Class 1 category vocabulary: ['sports', 'sport', 'Sports', 'sporting', 'soccer', 'athletics', 'athletic', 'baseball', 'hockey', 'basketball', 'regional', 'travel', 'matches', 'coaches', 'youth', 'Sport', 'health', 'teams', 'recreational', 'team', 'medical', 'match', 'cultural', 'gaming', 'play', 'golf', 'local', 'outdoor', 'tennis', 'schools', 'league', 'radio', 'stadium', 'recreation', 'activities', 'transportation', 'club', 'wrestling', 'rugby', 'everything', 'training', 'fields', 'city', 'fans', 'leagues', 'school', 'safety', 'national', 'aquatic', 'summer', 'track', 'air', 'letters', 'rules', 'championship', 'racing', 'grounds', 'pro', 'arts', 'leisure', 'great', 'clubs', 'broadcast']
+
+Class 2 category vocabulary: ['business', 'trade', 'Business', 'businesses', 'trading', 'commercial', 'market', 'enterprise', 'corporate', 'financial', 'sales', 'commerce', 'job', 'shop', 'economic', 'professional', 'world', 'operation', 'family', 'name', 'line', 'career', 'retail', 'firm', 'operations', 'marketing', 'good', 'work', 'private', 'personal', 'chain', 'time', 'group', 'division', 'investment', 'industrial', 'house', 'side', 'companies', 'store', 'global', 'task', 'consumer', 'shopping', 'street', 'property', 'special', 'merchant', 'part', 'department', 'town', 'real', 'traffic', 'space', 'concern', 'selling']
+
+Class 3 category vocabulary: ['technology', 'technologies', 'Technology', 'tech', 'technological', 'equipment', 'device', 'innovation', 'system', 'information', 'generation', 'infrastructure', 'phone', 'devices', 'energy', 'capability', 'concept', 'systems', 'computer', 'hardware', 'technique', 'Internet', 'design', 'program', 'protocol', 'ability', 'technical', 'platform', 'digital', 'knowledge', 'content', 'method', 'techniques', 'strategy', 'material', 'internet', 'Tech', 'web', 'development', 'invention', 'feature', 'IT', 'project', 'facility', 'intelligence', 'process', 'card', 'wireless', 'car', 'format', 'concepts', 'gene', 'model', 'features', 'smart', 'app', 'computers', 'machine', 'also', 'talent', 'solution', 'idea', 'speed', 'algorithm', 'style']
+
+Preparing self supervision for masked category prediction.
+Number of documents with category indicative terms found for each category is: {0: 130, 1: 1414, 2: 1367, 3: 2264}
+There are totally 5175 documents with category indicative terms.
+
+Training model via masked category prediction.
+Epoch 1:
+Average training loss: 0.7909982800483704
+Epoch 2:
+Average training loss: 0.21481257677078247
+Epoch 3:
+Average training loss: 0.1076824814081192
+
+Start self-training.
+
+
+PS:
+
+Read file <LOTClass_ag.err> for stderr output of this job.
+
