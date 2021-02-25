@@ -1,10 +1,8 @@
 Sender: LSF System <lsfadmin@gpu10>
 Subject: Job 39457: <LOTClass_ag> in cluster <cluster_lsf> Exited
 
-Job <LOTClass_ag> was submitted from host <mgtgpu02> by user <wangziyuan> in cluster <cluster_lsf> at Wed Feb 24 22:06:24 2021
-Job was executed on host(s) <2*gpu10>, in queue <gpu>, as user <wangziyuan> in cluster <cluster_lsf> at Wed Feb 24 22:06:25 2021
-</nfsshare/home/wangziyuan> was used as the home directory.
-</nfsshare/home/wangziyuan/NLP/LOTClass> was used as the working directory.
+Job <LOTClass_ag> was submitted from host <mgtgpu02> by user in cluster <cluster_lsf> at Wed Feb 24 22:06:24 2021
+Job was executed on host(s) <2*gpu10>, in queue <gpu>, as user in cluster <cluster_lsf> at Wed Feb 24 22:06:25 2021
 Started at Wed Feb 24 22:06:25 2021
 Terminated at Wed Feb 24 22:18:37 2021
 Results reported at Wed Feb 24 22:18:37 2021
